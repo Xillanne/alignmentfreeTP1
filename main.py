@@ -1,5 +1,6 @@
 from loading import load_directory
 from kmers import stream_kmers
+from sketching import sketching
 
 
 
@@ -38,6 +39,31 @@ def jaccard(fileA, fileB, k):
     j = taille_I / taille_U
     return j
 
+def jaccard1(s1,s2, k):
+    j = 0  # Jaccard distance
+    # --- To complete ---
+    dico = {}  # Compare kmers
+    taille_U = 0  # Taille Union
+    taille_I = 0  # Taille Intersection
+    for kmer in s1:
+            # Permet de comparer la même chose dans les deux séquences
+            if kmer not in dico:
+                dico[kmer] = 1
+            else:
+                dico[kmer] += 1
+            taille_U += 1
+
+    for kmer in s2:
+            if kmer in dico:
+                taille_I += 1
+                dico[kmer] -= 1
+                if dico[kmer] == 0:
+                    del dico[kmer]
+            else:
+                taille_U += 1
+
+    j = taille_I / taille_U
+    return j
 
 
 
@@ -54,8 +80,14 @@ if __name__ == "__main__":
             filename_i = filenames[i]
             filename_j = filenames[j]
 
-            jaccard_values = jaccard(files[filename_i], files[filename_j], k)
+            #jaccard_values = jaccard(files[filename_i], files[filename_j], k)
 
+            #Echantillonnage des deux individus
+            #FAUT ADAPTER JACCARD POUR SU'IL fonctionne sur ça
+            sketchA = list(sketching(files[filename_i], k, 400))
+            sketchB = list(sketching(files[filename_j], k, 400))
+            jaccard_values = jaccard1(sketchA, sketchB, k)
+            
             # Store the Jaccard value in the table
             if filename_i not in jaccard_table:
                 jaccard_table[filename_i] = {}
