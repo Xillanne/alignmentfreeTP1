@@ -1,6 +1,5 @@
 from loading import load_directory
 from kmers import stream_kmers
-import pandas as pd
 
 
 
@@ -16,7 +15,9 @@ def jaccard(fileA, fileB, k):
     taille_U = 0  # Taille Union
     taille_I = 0  # Taille Intersection
     for seq in fileA:
-        for kmer, rkmer in stream_kmers(seq, k):
+        for res in stream_kmers(seq, k):
+            kmer = min(res) #On prend le kmer canonique (ie le plus petit)
+            # Permet de comparer la même chose dans les deux séquences
             if kmer not in dico:
                 dico[kmer] = 1
             else:
@@ -24,7 +25,8 @@ def jaccard(fileA, fileB, k):
             taille_U += 1
 
     for seq in fileB:
-        for kmer, rkmer in stream_kmers(seq, k):
+        for res in stream_kmers(seq, k):
+            kmer = min(res) #On prend le kmer canonique (ie le plus petit)
             if kmer in dico:
                 taille_I += 1
                 dico[kmer] -= 1
@@ -41,18 +43,42 @@ def jaccard(fileA, fileB, k):
 
 if __name__ == "__main__":
     # Load all the files in a dictionary
-    files = load_directory("data")
+    files = load_directory("../data")
     k = 21
     
     filenames = list(files.keys())
-    res = pd.DataFrame(index=filenames, columns=filenames)
+    jaccard_table = {}
+
     for i in range(len(files)):
         for j in range(i+1, len(files)):
-            
-            # --- Complete here ---
+            filename_i = filenames[i]
+            filename_j = filenames[j]
 
-            jaccard_values = jaccard(files[filenames[i]], files[filenames[j]], k)
-            print(filenames[i], filenames[j], jaccard_values)
-            # Stocker les résultats dans le DataFrame
-            res.at[filenames[i], filenames[j]] = jaccard_values
-    res.to_csv('Resultats.csv')
+            jaccard_values = jaccard(files[filename_i], files[filename_j], k)
+
+            # Store the Jaccard value in the table
+            if filename_i not in jaccard_table:
+                jaccard_table[filename_i] = {}
+            jaccard_table[filename_i][filename_j] = jaccard_values
+
+            # Repeat for the other direction since the matrix is symmetric
+            if filename_j not in jaccard_table:
+                jaccard_table[filename_j] = {}
+            jaccard_table[filename_j][filename_i] = jaccard_values
+
+            # Print the results if needed
+            print(filename_i, filename_j, jaccard_values)
+
+    # Print or save the Jaccard table
+    print("Jaccard Table:")
+    for filename_i in filenames:
+        print("\t", filename_i.split('_')[1], end="")
+    print()
+    for filename_i in filenames:
+        print(filename_i.split('_')[1], end="")
+        for filename_j in filenames:
+            if filename_j in jaccard_table[filename_i]:
+                print("\t", jaccard_table[filename_i][filename_j], end="")
+            else:
+                print("\t", "-", end="")
+        print()

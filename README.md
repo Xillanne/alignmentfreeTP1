@@ -16,18 +16,31 @@ Vous devez également y indiquer le temps d'exécution qu'il a fallu pour calcul
 
 En observant les distances obtenues, que pouvez-vous dire des espèces présentes dans cet échantillon ?
 
+### Résultats MAJ ###
+On a des nucléotides qui ne sont pas défini dans nos séquences : on décide de les garder et des les attribuer à un de nucléotides qu'ils peuvent représenter, ainsi on a comme encodage :
+$${'A':0b00,'C':0b01,'T':0b10,'G':0b11,'Y':0b10,'M':0b01,'R':0b00,'W':0b00,'K':0b11,'S':0b00}$$
 
-|                           | GCF_000006945.2_ASM694v2_genomic.fna | GCF_008244785.1_ASM824478v1_genomic.fna | GCF_014892695.1_ASM1489269v1_genomic.fna | GCF_020526745.1_ASM2052674v1_genomic.fna | GCF_020535205.1_ASM2053520v1_genomic.fna |
-|---------------------------|----------------------------------------|-------------------------------------------|---------------------------------------------|----------------------------------------|----------------------------------------|
-| GCF_000006945.2_ASM694v2_genomic.fna |                                      | 0.9373626421312458                        | 0.001550675872048986                        | 0.012140803514976201                   | 0.003013548168815185                   |
-| GCF_008244785.1_ASM824478v1_genomic.fna |                                      |                                           | 0.001557468892236945                        | 0.012245770914016619                   | 0.003125830417644714                   |
-| GCF_014892695.1_ASM1489269v1_genomic.fna |                                      |                                           |                                             | 0.0015157390722817707                  | 0.002382203690118471                   |
-| GCF_020526745.1_ASM2052674v1_genomic.fna |                                      |                                           |                                             |                                      | 0.07879644967649506                    |
-| GCF_020535205.1_ASM2053520v1_genomic.fna |                                      |                                           |                                             |                                      |                                        |
+Les fonctions ont été modifiées pour garder les k_mers canoniques et l'initialisation a été modifiée. On obtient alors les résultats suivants :
+
+Jaccard Table:
+	 020526745.1	 020535205.1	 014892695.1	 000006945.2	 008244785.1
+020526745.1	 -	 0.6139027671100382	 0.0019466253653915354	 0.019091889920944443	 0.019327764464620357
+020535205.1	 0.6139027671100382	 -	 0.0039007084501784146	 0.01791173059511927	 0.018016662252293467
+014892695.1	 0.0019466253653915354	 0.0039007084501784146	 -	 0.0017591971757668513	 0.0017684627614227755
+000006945.2	 0.019091889920944443	 0.01791173059511927	 0.0017591971757668513	 -	 0.93785631871861
+008244785.1	 0.019327764464620357	 0.018016662252293467	 0.0017684627614227755	 0.93785631871861	 -
+
+Avec un temps de :
+real	1m2,334s
+user	1m1,086s
+sys	0m1,180s
+
+Nos résultats indiquent que 008244785.1 et 000006945.2 sont extrémement proches, il doit s'agir de bactérie de la même espèces, voire de la même souche car elles ont une distance de Jaccard de 0.94.
+020535205.1 et 020526745.1 sont proches, avec un indice de Jaccard de 0.61, on peut supposer qu'elles sont de la même espèce mais dans des environnements différents ou d'espèces différentes mais proches.
+Les autres bactéries sont toutes très différentes les une des autres ~0.
+
+# TP 2
+Implémenter la méthode de sketching de notre choix
 
 
-La distance de jaccard mesure la similarité entre des séquences, la majorité des génomes de ces bactéries sont très éloignés les uns des autres car les indices sont proches de 0. Le bactéries GCF_000006945.2 et GCF_008244785.1 au contraire ont des séquences très similaires. On peut imagine qu'on a deux bactéries de la même espèce et que les autres sont d'espèces différentes éloignées.
 
-real    0m48,420s
-user    0m47,216s
-sys     0m1,112s

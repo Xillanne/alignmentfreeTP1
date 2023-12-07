@@ -28,7 +28,7 @@ def stream_kmers(text, k):
     kmer = 0
     rkmer = 0
     ### Initialisation
-    for letter in text[:k]:
+    for letter in text[:k-1]:#jusqu'à k-1 car on veut afficher le premier kmer (qui est à :k)
         #kmer ->
         kmer <<= 2 #Décale de 2 vers la gauche (un nt après un nt)
         letter_value = encodage[letter]
@@ -44,7 +44,7 @@ def stream_kmers(text, k):
     #Récurrence
     #On définit le mask
     mask = (1<<(2*k))-1 #On récupère les bits qui correspondent à la longeur d'un kmer
-    for letter in text[k:]: #On parcourt le texte on veut récupèrer toute la séquence
+    for letter in text[k-1:]: #On parcourt le texte on veut récupèrer toute la séquence
         #kmer ->
         kmer <<= 2 #Décale de 2 vers la gauche (un nt après un nt)
         letter_value = encodage[letter]
