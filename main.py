@@ -84,8 +84,8 @@ if __name__ == "__main__":
 
             #Echantillonnage des deux individus
             #FAUT ADAPTER JACCARD POUR SU'IL fonctionne sur ça
-            sketchA = list(sketching(files[filename_i], k, 400))
-            sketchB = list(sketching(files[filename_j], k, 400))
+            sketchA = list(sketching(files[filename_i], k, 1000))
+            sketchB = list(sketching(files[filename_j], k, 1000))
             jaccard_values = jaccard1(sketchA, sketchB, k)
             
             # Store the Jaccard value in the table
