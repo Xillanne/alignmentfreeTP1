@@ -1,0 +1,12 @@
+git clone - copie le répértoire
+git add - ajout des changement
+git commit - compare aux  versions précédentes, stocke les changements dans git
+git push - maj répértoire en ligne
+
+### NOTES SUR LE TP ###
+On prend le kmer canonique car on ne sait pas dans quel sens se fait le séquençage
+On fait l'initialisation sur les k-1 termes car sinon on ne renvoie pas le premier k_mer.
+
+### TP2 ###
+Implémenter méthode de sketching de notre choix
+Ajouter s dans le main
