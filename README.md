@@ -30,10 +30,31 @@ Jaccard Table:
 000006945.2	 0.019091889920944443	 0.01791173059511927	 0.0017591971757668513	 -	 0.93785631871861
 008244785.1	 0.019327764464620357	 0.018016662252293467	 0.0017684627614227755	 0.93785631871861	 -
 
-Avec un temps de :
-real	1m2,334s
-user	1m1,086s
-sys	0m1,180s
+Le retour de la commande time -v donne :
+Command being timed: "python3 main.py"
+        User time (seconds): 64.25
+        System time (seconds): 0.92
+        Percent of CPU this job got: 99%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 1:05.28
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 410804
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 433023
+        Voluntary context switches: 1
+        Involuntary context switches: 76
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+
 
 Nos résultats indiquent que 008244785.1 et 000006945.2 sont extrémement proches, il doit s'agir de bactérie de la même espèces, voire de la même souche car elles ont une distance de Jaccard de 0.94.
 020535205.1 et 020526745.1 sont proches, avec un indice de Jaccard de 0.61, on peut supposer qu'elles sont de la même espèce mais dans des environnements différents ou d'espèces différentes mais proches.
