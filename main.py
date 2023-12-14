@@ -3,43 +3,7 @@ from kmers import stream_kmers
 from sketching import sketching
 
 
-
-def jaccard(fileA, fileB, k):
-    """Transforme fichiers fasta en set de kmer et calcule leur intersection
-    :param array fileA: array de string où chaque string correspond à une séquence
-    :param assay fileB: idem fileA
-    :param int k: taille du kmer
-    :return j: jaccard distance A inter B / A union B"""
-    j = 0  # Jaccard distance
-    # --- To complete ---
-    dico = {}  # Compare kmers
-    taille_U = 0  # Taille Union
-    taille_I = 0  # Taille Intersection
-    for seq in fileA:
-        for res in stream_kmers(seq, k):
-            kmer = min(res) #On prend le kmer canonique (ie le plus petit)
-            # Permet de comparer la même chose dans les deux séquences
-            if kmer not in dico:
-                dico[kmer] = 1
-            else:
-                dico[kmer] += 1
-            taille_U += 1
-
-    for seq in fileB:
-        for res in stream_kmers(seq, k):
-            kmer = min(res) #On prend le kmer canonique (ie le plus petit)
-            if kmer in dico:
-                taille_I += 1
-                dico[kmer] -= 1
-                if dico[kmer] == 0:
-                    del dico[kmer]
-            else:
-                taille_U += 1
-
-    j = taille_I / taille_U
-    return j
-
-def jaccard1(s1,s2, k):
+def jaccard(s1,s2, k):
     j = 0  # Jaccard distance
     # --- To complete ---
     dico = {}  # Compare kmers
@@ -68,6 +32,15 @@ def jaccard1(s1,s2, k):
 
 
 if __name__ == "__main__":
+    #seqA=['ATGCATGC']
+    #seqB=['ATGCCGTA']
+    #for i in list(range(1,7)):
+    #    sketchA=list(sketching(seqA, 3, i))
+    #    sketchB=list(sketching(seqB, 3, i))
+    #    j=jaccard(sketchA, sketchB, 3)
+    #    print(i,j)
+    
+    
     # Load all the files in a dictionary
     files = load_directory("../data")
     k = 21
@@ -84,9 +57,9 @@ if __name__ == "__main__":
 
             #Echantillonnage des deux individus
             #FAUT ADAPTER JACCARD POUR SU'IL fonctionne sur ça
-            sketchA = list(sketching(files[filename_i], k, 1000))
-            sketchB = list(sketching(files[filename_j], k, 1000))
-            jaccard_values = jaccard1(sketchA, sketchB, k)
+            sketchA = list(sketching(files[filename_i], k, 900))
+            sketchB = list(sketching(files[filename_j], k, 900))
+            jaccard_values = jaccard(sketchA, sketchB, k)
             
             # Store the Jaccard value in the table
             if filename_i not in jaccard_table:

@@ -62,3 +62,6 @@ def stream_kmers(text, k):
         #print('rkmer :',kmer2str(rkmer,k))
         
         yield kmer,rkmer
+
+#for i in stream_kmers('ATGCATGC', 3):
+#    print(min(i),kmer2str(min(i), 3))

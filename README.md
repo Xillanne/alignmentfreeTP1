@@ -42,5 +42,37 @@ Les autres bactéries sont toutes très différentes les une des autres ~0.
 # TP 2
 Implémenter la méthode de sketching de notre choix
 
+On obtient les résultats ci dessous en utilisant un échantillonnage de 900.
 
+Jaccard Table:
+         000006945.2     020526745.1     008244785.1     020535205.1     014892695.1
+000006945.2      -       0.01637492941840768     0.9047619047619048      0.017524024872809497    0.0
+020526745.1      0.01637492941840768     -       0.01637492941840768     0.41843971631205673     0.0005558643690939411
+008244785.1      0.9047619047619048      0.01637492941840768     -       0.017524024872809497    0.0
+020535205.1      0.017524024872809497    0.41843971631205673     0.017524024872809497    -       0.0033444816053511705
+014892695.1      0.0     0.0005558643690939411   0.0     0.0033444816053511705   -
+        Command being timed: "python3 main.py"
+        User time (seconds): 50.97
+        System time (seconds): 0.06
+        Percent of CPU this job got: 100%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:51.03
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 38844
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 14328
+        Voluntary context switches: 1
+        Involuntary context switches: 14
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
 
+Les résultats sont similaires à ceux obtenus précédemment. Avec les bactéries 008244785.1 et 000006945.2 avec une distance de jaccard de 0.9 et les bactéries 020535205.1 et 020526745.1  qui sont proches, cependant leur similarité est moins élevées que précédemment avec 0.42, cela peut s'expliquer par l'échantillonnage, prendre les 900 plus petits kmer ne semble pas refleter avec précision la distribution globale des kmers.
