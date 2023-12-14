@@ -17,16 +17,19 @@ def jaccard(fileA, fileB, k):
     for seq in fileA:
         for res in stream_kmers(seq, k):
             kmer = min(res) #On prend le kmer canonique (ie le plus petit)
+            #print(kmer)
             # Permet de comparer la même chose dans les deux séquences
             if kmer not in dico:
                 dico[kmer] = 1
             else:
                 dico[kmer] += 1
             taille_U += 1
-
+            #print(taille_U)
+    #print('\n')
     for seq in fileB:
         for res in stream_kmers(seq, k):
             kmer = min(res) #On prend le kmer canonique (ie le plus petit)
+            #print(kmer)
             if kmer in dico:
                 taille_I += 1
                 dico[kmer] -= 1
@@ -34,7 +37,7 @@ def jaccard(fileA, fileB, k):
                     del dico[kmer]
             else:
                 taille_U += 1
-
+            #print(taille_U)
     j = taille_I / taille_U
     return j
 
@@ -42,6 +45,11 @@ def jaccard(fileA, fileB, k):
 
 
 if __name__ == "__main__":
+	#seqA=['ATGCATGC']
+	#seqB=['ATGCCGTA']
+	#j=jaccard(seqA,seqB,3)
+	#print(j)
+
     # Load all the files in a dictionary
     files = load_directory("../data")
     k = 21
@@ -82,3 +90,4 @@ if __name__ == "__main__":
             else:
                 print("\t", "-", end="")
         print()
+
