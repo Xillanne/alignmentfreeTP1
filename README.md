@@ -31,7 +31,8 @@ Jaccard Table:
 008244785.1	 0.019327764464620357	 0.018016662252293467	 0.0017684627614227755	 0.93785631871861	 -
 
 Le retour de la commande time -v donne :
-Command being timed: "python3 main.py"
+
+	Command being timed: "python3 main.py"
         User time (seconds): 64.25
         System time (seconds): 0.92
         Percent of CPU this job got: 99%
