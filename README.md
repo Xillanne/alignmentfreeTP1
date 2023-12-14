@@ -99,6 +99,8 @@ Jaccard Table:
         Page size (bytes): 4096
         Exit status: 0
 
-Les résultats sont similaires à ceux obtenus précédemment. Avec les bactéries 008244785.1 et 000006945.2 avec une distance de jaccard de 0.9 et les bactéries 020535205.1 et 020526745.1  qui sont proches, cependant leur similarité est moins élevées que précédemment avec 0.42, cela peut s'expliquer par l'échantillonnage, prendre les 900 plus petits kmer ne semble pas refleter avec précision la distribution globale des kmers.
-On remarque que comme attendu le sketching permet d'executer plus rapidement (51 sec contre 1min:05) avec un temps système qui passe de 0.92 sec à 0.06, ce qui suggère une utilisation plus efficace des ressources. L'utilisation avec les sketching utilise moins de mémoire avec la taille maximale de l'ensemble résident qui est à 38844 kbytes alors qu'elle était à 410804 précédemment.
+Les résultats sont similaires à ceux obtenus précédemment. Avec les bactéries 008244785.1 et 000006945.2 avec une distance de jaccard de 0.9 et les bactéries 020535205.1 et 020526745.1  qui sont proches, cependant leur similarité est moins élevées que précédemment avec 0.42, cela peut s'expliquer par l'échantillonnage, prendre les 900 plus petits kmer ne semble pas refleter avec précision la distribution globale des kmers.  
+
+On remarque que comme attendu le sketching permet d'executer plus rapidement (51 sec contre 1min:05) avec un temps système qui passe de 0.92 sec à 0.06, ce qui suggère une utilisation plus efficace des ressources. L'utilisation avec les sketching utilise moins de mémoire avec la taille maximale de l'ensemble résident qui est à 38844 kbytes alors qu'elle était à 410804 précédemment.  
+
 On a bien réussi à optimiser notre comparaison de séquence.
