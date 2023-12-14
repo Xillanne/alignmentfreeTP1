@@ -103,4 +103,6 @@ Les résultats sont similaires à ceux obtenus précédemment. Avec les bactéri
 
 On remarque que comme attendu le sketching permet d'executer plus rapidement (51 sec contre 1min:05) avec un temps système qui passe de 0.92 sec à 0.06, ce qui suggère une utilisation plus efficace des ressources. L'utilisation avec les sketching utilise moins de mémoire avec la taille maximale de l'ensemble résident qui est à 38844 kbytes alors qu'elle était à 410804 précédemment.  
 
-On a bien réussi à optimiser notre comparaison de séquence.
+On a bien réussi à optimiser notre comparaison de séquence.  
+
+Joyeux Noêl
